@@ -6,12 +6,14 @@ A 3D robot fighting game built with [Three.js](https://threejs.org/). No build s
 
 ## Fighters
 
-| Fighter | Type | HP | Style |
-|---|---|---|---|
-| **IRON-X** | Humanoid | 100 | Balanced — punch, kick, uppercut |
-| **VENOM-C** | Centipede | 120 | Aggressive — venom bite, leg sweep, tail sting |
+| Fighter | Role | Type | HP | Style |
+|---|---|---|---|---|
+| **IRON-X** | Player | Humanoid | 100 | Balanced — punch, kick, uppercut |
+| **VENOM-C** | Player | Centipede | 120 | Aggressive — venom bite, leg sweep, tail sting |
+| **GORE-C** | CPU | Centipede | 120 | AI opponent when you play as IRON-X |
+| **TITAN-9** | CPU | Humanoid | 100 | AI opponent when you play as VENOM-C |
 
-At the character select screen, pick who **you** want to play. The CPU always takes the opposite character.
+At the character select screen, pick who **you** want to play. The CPU always controls the opposing fighter.
 
 ## Controls
 
@@ -48,7 +50,20 @@ Or just download `index.html` and open it directly.
 - Health bars that shift color as HP drops
 - 99-second round timer with KO and time-out win conditions
 
+## QA
+
+A Playwright script covers the main game flows:
+
+```bash
+pip install playwright
+playwright install chromium
+python3 qa.py
+```
+
+Runs in a headed browser by default so you can watch the test execute. Screenshots are saved to `qa_screenshots/`.
+
 ## Tech
 
 - [Three.js](https://threejs.org/) r160 — loaded from CDN via import map
 - Vanilla JS ES modules, no framework or build tooling
+- [Playwright](https://playwright.dev/) for browser-based QA
